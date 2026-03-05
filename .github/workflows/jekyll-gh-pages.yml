@@ -1,16 +1,18 @@
-# Jekyll GitHub Pages Action
+# Jekyll GitHub Pages Workflow
 
-name: Jekyll
+name: Jekyll Builds
 
 on:
   push:
     branches:
-      - main
+      - gh-pages
+  pull_request:
+    branches:
+      - gh-pages
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,14 +20,14 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'  # Specify the ruby version
+          ruby-version: 2.7
 
       - name: Install dependencies
         run: |
           gem install bundler
           bundle install
 
-      - name: Build website
+      - name: Build Jekyll site
         run: |
           bundle exec jekyll build
 
