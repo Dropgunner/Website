@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic AI Knowledge Base</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Top Bar -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button id="sidebarToggle" class="icon-btn" title="Toggle Sidebar">&#9776;</button>
+    <div class="logo">
+      <span class="logo-icon">&#129302;</span>
+      <span class="logo-text">Agentic AI <strong>Knowledge Base</strong></span>
+    </div>
+  </div>
+  <div class="topbar-center">
+    <div class="search-wrapper">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="searchInput" placeholder="Search across all sections..." autocomplete="off" />
+      <kbd class="search-kbd">Ctrl+K</kbd>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="progress-pill" title="Reading progress">
+      <span id="progressText">0 / 17</span>
+      <div class="progress-bar-mini">
+        <div id="progressBarFill" class="progress-bar-fill"></div>
+      </div>
+    </div>
+    <button id="themeToggle" class="icon-btn" title="Toggle dark/light mode">&#9790;</button>
+  </div>
+</header>
+
+<!-- Search Results Dropdown -->
+<div id="searchResults" class="search-results hidden"></div>
+
+<!-- Layout -->
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <span>Contents</span>
+      <button id="resetProgress" class="small-btn" title="Reset all progress">Reset</button>
+    </div>
+    <nav id="sidebarNav" class="sidebar-nav"></nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="mainContent" class="main-content">
+    <!-- Home / Welcome screen -->
+    <div id="homeScreen" class="home-screen">
+      <div class="home-hero">
+        <div class="hero-badge">&#129302; Knowledge Base</div>
+        <h1>Agentic AI<br/><span class="gradient-text">Knowledge Base</span></h1>
+        <p class="hero-sub">A comprehensive, structured knowledge repository consolidating cutting-edge research, patterns, frameworks, and best practices for building, deploying, and operating agentic AI systems at scale.</p>
+        <div class="hero-stats" id="heroStats"></div>
+        <button class="cta-btn" onclick="navigateToSection(1)">Start Learning &#8594;</button>
+      </div>
+      <div class="home-grid" id="homeGrid"></div>
+    </div>
+
+    <!-- Section View -->
+    <div id="sectionView" class="section-view hidden">
+      <div class="section-breadcrumb" id="sectionBreadcrumb"></div>
+      <div class="section-header">
+        <div class="section-num-badge" id="sectionNumBadge"></div>
+        <div>
+          <h1 id="sectionTitle"></h1>
+          <p id="sectionIntro" class="section-intro"></p>
+        </div>
+      </div>
+      <div class="section-actions">
+        <button id="markReadBtn" class="mark-read-btn" onclick="toggleSectionRead()">&#10003; Mark as Read</button>
+        <button class="nav-btn" id="prevBtn" onclick="navigatePrev()">&#8592; Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="navigateNext()">Next &#8594;</button>
+      </div>
+      <div id="subsectionList" class="subsection-list"></div>
+      <div class="section-footer-nav">
+        <button class="nav-btn large" id="prevBtn2" onclick="navigatePrev()">&#8592; Previous Section</button>
+        <button class="nav-btn large primary" id="nextBtn2" onclick="navigateNext()">Next Section &#8594;</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Subsection Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 id="modalTitle"></h2>
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    </div>
+    <div id="modalBody" class="modal-body"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
